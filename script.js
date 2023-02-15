@@ -1,9 +1,14 @@
 const main = document.querySelector('.main')
+const turnSpan = document.querySelector('.turninfo')
+const errorSpan = document.querySelector('.error')
+const resultSpan = document.querySelector('.result')
+const resetBtn = document.querySelector('.reset')
 
 const gameBoard = (() =>{
     let playerOneTurn = true
     const array = []
     let isGameOverBool = false
+    let isGameDrewBool = false
     const renderBoard = () =>{
         for(let i = 0; i < 3; i++)
         {
@@ -51,9 +56,9 @@ const gameBoard = (() =>{
             isGameOverBool = true
         }
 
-        if(array.every(element => element.textContent !== ''))
+        if(array.every(element => element.textContent !== '' && !isGameOverBool))
         {
-            isGameOverBool = true
+            isGameDrewBool = true
         }
         
     }
@@ -62,7 +67,10 @@ const gameBoard = (() =>{
     const isGameEnd = () =>{
         checkForWinner()
         if(isGameOverBool){
-            console.log("Game Over!")
+            resultSpan.textContent = `Game Over!`
+        }else if(isGameDrewBool)
+        {
+            resultSpan.textContent = `Game Over! It's a draw!`
         }
     }
 
@@ -70,10 +78,12 @@ const gameBoard = (() =>{
         array.forEach(element => element.addEventListener('click', (e) =>{
             console.log('clicked' + array.indexOf(element))
             if(playerOneTurn) {
+                playerO.displayTurn()
                 playerX.markSpot(element)
                 playerOneTurn = false
                 isGameEnd()
             }else{
+                playerX.displayTurn()
                 playerO.markSpot(element)
                 playerOneTurn = true
                 isGameEnd()
@@ -82,9 +92,14 @@ const gameBoard = (() =>{
         return array
     }
 
-    const validateError = (item) =>{
-
-    }
+    resetBtn.addEventListener('click', () =>{
+        array.forEach(element => {
+            element.textContent = ''
+        })
+        resultSpan.textContent = ''
+        turnSpan.textContent = 'Player X turn'
+        errorSpan.textContent = ''
+    })
 
     return {renderBoard, logArray, addListeners}
 })()
@@ -94,14 +109,23 @@ const player = (name) =>{
         if(item.textContent == '')
         {
             item.textContent = name
+         errorSpan.textContent = ''
         }
         else
         {
-            console.log("DAJ TU WALIDACJE")
+            validateError()
         }
-        return {}
     }
-    return {markSpot}
+
+    const displayTurn = () =>{
+        turnSpan.textContent = `Player ${name} Turn`        
+    }
+
+    const validateError = () =>{
+     errorSpan.textContent = `Whoa, Player ${name}, this square is alerady taken.`
+    }
+ 
+    return {markSpot, displayTurn}
 }
 
 gameBoard.renderBoard()
