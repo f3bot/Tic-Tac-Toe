@@ -5,6 +5,12 @@
     font-family: 'Bebas Neue', cursive;
 }
 
+body{
+    min-height: 100vh;
+    max-height: 100vh;
+    height: 100%;
+}
+
 nav{
     display: flex;
     justify-content: center;
@@ -69,16 +75,23 @@ div{
 }
 
 .errorDiv{
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 60px;
 }
 
 .resultDiv{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
+    flex: 0 1 auto;
     align-items: center;
     font-size: 60px;
     width: 100%;
+    height: 30vh;
 }
 
 .resultDiv button{
@@ -88,7 +101,13 @@ div{
     border: none;
     font-size: 40px;
     border: 1px solid rgba(0, 0, 0, 0.544);
+    background-color:  #2b3e52 ;
+    color: white;
+    cursor: pointer;
+
 }
+
+
 
 .footer{
     background-color: rgba(232, 232, 232, 0.771);
