@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 36px;
 }
 
 .main{
@@ -11,11 +13,47 @@
 }
 
 .block{
-    height: 200px;
-    width: 200px;
     display: flex;
     justify-content: center;
     align-items: center; 
-    border: 1px solid black;
-    font-size: 40px;
+    cursor: pointer;
+    width: 125px;
+    height: 125px;
+    border-left: none;
+    font-size: 70px;
+}
+
+.row:nth-child(1)
+{
+    border-right: 5px solid black;
+}
+
+.row:nth-child(2)
+{
+    border-right: 5px solid black;
+}
+
+.block:nth-child(1)
+{
+    border-bottom: 5px solid black;
+}
+
+.block:nth-child(3)
+{
+    border-top: 5px solid black;
+}
+
+.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer img {
+    height: 25px;
+    width: 25px;
 }

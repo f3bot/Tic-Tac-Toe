@@ -13,6 +13,7 @@ const gameBoard = (() =>{
         for(let i = 0; i < 3; i++)
         {
             const row = document.createElement('div')
+            row.classList.add('row')
             for(let j = 0; j < 3; j++)
             {
                 const block = document.createElement('div')
@@ -21,6 +22,7 @@ const gameBoard = (() =>{
                 row.appendChild(block)
             }
             main.appendChild(row)
+            console.log(row.children)
         }    
     }
     const logArray = () =>{
@@ -99,6 +101,8 @@ const gameBoard = (() =>{
         resultSpan.textContent = ''
         turnSpan.textContent = 'Player X turn'
         errorSpan.textContent = ''
+        isGameDrewBool = false
+        isGameOverBool = false
     })
 
     return {renderBoard, logArray, addListeners}
@@ -132,3 +136,5 @@ gameBoard.renderBoard()
 gameBoard.addListeners()
 const playerX = player('X')
 const playerO = player('O')
+
+console.log(main.children)
